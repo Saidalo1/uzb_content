@@ -1,0 +1,193 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-02-18 11:48+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || "
+"(n%100>=11 && n%100<=14)? 2 : 3);\n"
+
+#: apps/content/admin.py:21
+msgid "Metadata"
+msgstr "Метаданные"
+
+#: apps/content/admin.py:25
+msgid "Creators"
+msgstr "Создатели"
+
+#: apps/content/admin.py:28
+msgid "Actors"
+msgstr "Актёры"
+
+#: apps/content/admin.py:31
+msgid "Availability"
+msgstr "Доступность"
+
+#: apps/content/admin.py:58
+msgid "Personal Information"
+msgstr "Личная информация"
+
+#: apps/content/admin.py:61
+msgid "Details"
+msgstr "Детали"
+
+#: apps/content/apps.py:8
+msgid "content"
+msgstr "содержание"
+
+#: apps/content/models.py:12 apps/content/models.py:25
+#: apps/content/models.py:38
+msgid "title"
+msgstr "Заголовок"
+
+#: apps/content/models.py:14 apps/content/models.py:27
+#: apps/content/models.py:53 apps/content/models.py:72
+msgid "is_active"
+msgstr "Активно"
+
+#: apps/content/models.py:19 apps/content/models.py:73
+msgid "language"
+msgstr "Язык"
+
+#: apps/content/models.py:20
+msgid "languages"
+msgstr "Языки"
+
+#: apps/content/models.py:26
+msgid "description"
+msgstr "Описание"
+
+#: apps/content/models.py:32
+msgid "slug_page"
+msgstr "Слаг страницы"
+
+#: apps/content/models.py:33
+msgid "slug_pages"
+msgstr "Слаги страниц"
+
+#: apps/content/models.py:39
+msgid "annotation"
+msgstr "Аннотация"
+
+#: apps/content/models.py:40
+msgid "is_featured"
+msgstr "Рекомендуемое"
+
+#: apps/content/models.py:41
+msgid "youtube_link"
+msgstr "Ссылка на YouTube"
+
+#: apps/content/models.py:42
+msgid "year"
+msgstr "Год"
+
+#: apps/content/models.py:43
+msgid "country"
+msgstr "Страна"
+
+#: apps/content/models.py:44
+msgid "genre"
+msgstr "Жанр"
+
+#: apps/content/models.py:45
+msgid "episode"
+msgstr "Эпизод"
+
+#: apps/content/models.py:46
+msgid "original_title"
+msgstr "Оригинальное название"
+
+#: apps/content/models.py:47
+msgid "running_time"
+msgstr "Продолжительность"
+
+#: apps/content/models.py:48
+msgid "original_language"
+msgstr "Оригинальный язык"
+
+#: apps/content/models.py:49
+msgid "directed_by"
+msgstr "Режиссёр"
+
+#: apps/content/models.py:50
+msgid "written_by"
+msgstr "Сценарист"
+
+#: apps/content/models.py:51
+msgid "cinematography"
+msgstr "Оператор"
+
+#: apps/content/models.py:52
+msgid "cast"
+msgstr "Актёрский состав"
+
+#: apps/content/models.py:54
+msgid "created_at"
+msgstr "Дата создания"
+
+#: apps/content/models.py:55
+msgid "updated_at"
+msgstr "Дата обновления"
+
+#: apps/content/models.py:60
+msgid "product"
+msgstr "Продукт"
+
+#: apps/content/models.py:61
+msgid "products"
+msgstr "Продукты"
+
+#: apps/content/models.py:65
+msgid "video_original"
+msgstr "Оригинальное видео"
+
+#: apps/content/models.py:66
+msgid "thumbnail"
+msgstr "Миниатюра"
+
+#: apps/content/models.py:67
+msgid "video_480"
+msgstr "Видео 480"
+
+#: apps/content/models.py:68
+msgid "video_720"
+msgstr "Видео 720"
+
+#: apps/content/models.py:69
+msgid "video_1080"
+msgstr "Видео 1080"
+
+#: apps/content/models.py:71
+msgid "duration"
+msgstr "Длительность"
+
+#: apps/content/models.py:77
+msgid "video"
+msgstr "Видео"
+
+#: apps/content/models.py:78
+msgid "videos"
+msgstr "Видео"
+
+#: root/settings/i18n.py:19
+msgid "Russian"
+msgstr "Русский"
+
+#: root/settings/i18n.py:19
+msgid "Uzbek"
+msgstr "Узбекский"
+
+#: root/settings/jazzmin_configs.py:29
+msgid "Welcome to the UZB Content"
+msgstr "Добро пожаловать в UZB Content"
+
+#: root/settings/jazzmin_configs.py:47
+msgid "Go back to website"
+msgstr "Вернуться на веб-сайт"

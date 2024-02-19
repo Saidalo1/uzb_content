@@ -1,0 +1,68 @@
+version: '3.8'
+
+services:
+  web:
+    build:
+      context: .
+      dockerfile: ./compose/django/Dockerfile
+    env_file: .env/.env.prod
+    command: /start
+    volumes:
+      - static_volume:/app/static
+      - media_volume:/app/media
+      - .:/app
+    depends_on:
+      - postgres
+      - redis
+
+  postgres:
+    image: postgres:alpine
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    ports:
+      - "5555:5432"
+    env_file: .env/.env.prod
+
+  redis:
+    image: redis:6.2-alpine
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+
+  celery_worker:
+    build:
+      context: .
+      dockerfile: ./compose/django/Dockerfile
+    image: celery_worker
+    command: /start-celeryworker
+    volumes:
+      - static_volume:/app/static
+      - media_volume:/app/media
+    env_file:
+      - .env/.env.prod
+    depends_on:
+      - redis
+      - postgres
+
+  nginx:
+    build:
+      context: .
+      dockerfile: ./compose/nginx/Dockerfile
+    ports:
+      - '8001:80'
+    depends_on:
+      - web
+    logging:
+      options:
+        max-size: '10m'
+        max-file: '3'
+    volumes:
+      - static_volume:/app/static
+      - media_volume:/app/media
+
+volumes:
+  media_volume:
+  static_volume:
+  postgres_data:
+  redis_data:

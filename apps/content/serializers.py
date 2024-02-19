@@ -1,7 +1,8 @@
+from django.db.models import F
 from rest_framework.serializers import ModelSerializer
 
-from apps.content.models import Video, Products
-from root.settings import MEDIA_URL
+from apps.content.models import Products
+from apps.shared.django.models import TranslatedSerializerMixin
 
 
 class ProductsModelListSerializer(ModelSerializer):
@@ -9,12 +10,7 @@ class ProductsModelListSerializer(ModelSerializer):
     def to_representation(self, instance):
         representation = super().to_representation(instance)
         request = self.context['request']
-        media = instance.media[0]
-        media['thumbnail'] = request.build_absolute_uri(media.get('thumbnail')).replace(
-            f"/{request.LANGUAGE_CODE}/{Products.__name__.lower()}/", f"/{MEDIA_URL}")
-        media['video'] = request.build_absolute_uri(media.get('video')).replace(
-            f"/{request.LANGUAGE_CODE}/{Products.__name__.lower()}/", f"/{MEDIA_URL}")
-        representation['media'] = media
+        representation['thumbnail'] = request.build_absolute_uri(instance.thumbnail.url)
         return representation
 
     class Meta:
@@ -24,14 +20,16 @@ class ProductsModelListSerializer(ModelSerializer):
 
 class ProductsModelDetailSerializer(ModelSerializer):
     def to_representation(self, instance):
-        representation = super().to_representation(instance)
         request = self.context['request']
-        media = instance.media[0]
-        media['thumbnail'] = request.build_absolute_uri(media.get('thumbnail')).replace(
-            f"/{request.LANGUAGE_CODE}/{Products.__name__.lower()}/{instance.pk}/", f"/{MEDIA_URL}")
-        media['video'] = request.build_absolute_uri(media.get('video')).replace(
-            f"/{request.LANGUAGE_CODE}/{Products.__name__.lower()}/{instance.pk}/", f"/{MEDIA_URL}")
-        representation['media'] = media
+        representation = super().to_representation(instance)
+
+        representation['video_urls'] = instance.video.values(
+            lang=F('language__language_code'),
+            video_480p=F('video_480'),
+            video_720p=F('video_720'),
+            video_1080p=F('video_1080')
+        )
+        representation['thumbnail'] = request.build_absolute_uri(instance.thumbnail.url)
         return representation
 
     class Meta:
@@ -41,15 +39,16 @@ class ProductsModelDetailSerializer(ModelSerializer):
                   "cast")
 
 
-class VideoModelSerializer(ModelSerializer):
+class ProductsFeaturedModelSerializer(ModelSerializer, TranslatedSerializerMixin):
+
     def to_representation(self, instance):
-        representation = super().to_representation(instance)
         request = self.context['request']
-        representation['video'] = request.build_absolute_uri(
-            getattr(instance, f"video_{self.context['quality']}")).replace(
-            f"/{request.LANGUAGE_CODE}/{Products.__name__.lower()}/{instance.pk}/", f"/{MEDIA_URL}")
+        representation = super().to_representation(instance)
+
+        representation['video_url'] = request.build_absolute_uri(instance.video.first().video_720.url)
+        representation['thumbnail'] = request.build_absolute_uri(instance.thumbnail.url)
         return representation
 
     class Meta:
-        model = Video
-        fields = ('id',)
+        model = Products
+        fields = ('id', 'title', 'annotation')

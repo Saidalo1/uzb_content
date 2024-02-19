@@ -7,7 +7,7 @@ from apps.content.models import Products, Video, Languages
 
 class VideoInline(TabularInline):
     model = Video
-    fields = ('language', 'video_original', 'thumbnail', 'is_active')
+    fields = ('language', 'video_original', 'is_active')
     extra = 1
     min_num = 1
 
@@ -15,21 +15,6 @@ class VideoInline(TabularInline):
 @register(Products)
 class ProductsAdmin(TranslatableAdmin):
     list_display = ('title',)
-    fieldsets = (
-        (_('Metadata'), {
-            'fields': ('title', 'annotation', 'is_featured', 'year', 'country', 'genre', 'episode', 'original_title',
-                       'running_time', 'original_language')
-        }),
-        (_('Creators'), {
-            'fields': ('directed_by', 'written_by', 'cinematography')
-        }),
-        (_('Actors'), {
-            'fields': ('cast',)
-        }),
-        (_('Availability'), {
-            'fields': ('youtube_link', 'is_active')
-        })
-    )
     inlines = (VideoInline,)
     show_full_result_count = False
 
@@ -46,11 +31,4 @@ class LanguagesAdmin(TranslatableAdmin):
 
 @register(Video)
 class VideoAdmin(ModelAdmin):
-    fieldsets = (
-        (_('Personal Information'), {
-            'fields': ('video_original', 'product', 'thumbnail')
-        }),
-        (_('Details'), {
-            'fields': ('is_active', 'language')
-        }),
-    )
+    list_display = ('video_original', 'language')

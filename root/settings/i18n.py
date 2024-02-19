@@ -8,7 +8,7 @@ from root.settings import BASE_DIR, env
 
 # from django.conf.global_settings import LANGUAGES
 
-LANGUAGE_CODE = 'ru'
+LANGUAGE_CODE = 'en'
 
 TIME_ZONE = 'UTC'
 
@@ -16,7 +16,7 @@ USE_I18N = True
 
 USE_TZ = True
 
-LANGUAGES = [('ru', _('Russian')), ('uz', _('Uzbek'))]
+LANGUAGES = [('en', _('English')), ('ru', _('Russian')), ('uz', _('Uzbek'))]
 
 # Path to save locale files
 LOCALE_PATHS = [
@@ -30,6 +30,24 @@ PARLER_LANGUAGES = {
     ],
     'default': {
         'fallback': LANGUAGE_CODE,
-        'hide_untranslated': True,
+        'hide_untranslated': False,
     }
 }
+
+# language_codes = {
+#     'ru': {
+#         'ru': "Русский язык",
+#         'en': "Английския язык",
+#         'uz': "Русский язык",
+#     },
+#     'en': {
+#         'ru': "Russian language",
+#         'uz': "Uzbek language",
+#         'en': "English language",
+#     },
+#     'uz': {
+#         'ru': "Rus tili",
+#         'uz': "O'zbek tili",
+#         'en': "Ingliz tili",
+#     }
+# }

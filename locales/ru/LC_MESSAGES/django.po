@@ -1,0 +1,207 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-02-19 08:00+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || "
+"(n%100>=11 && n%100<=14)? 2 : 3);\n"
+#: apps/content/admin.py:19
+#: apps/content/admin.py:19
+msgid "Metadata"
+msgstr "Метаданные"
+
+#: apps/content/admin.py:23
+msgid "Creators"
+msgstr "Создатели"
+
+#: apps/content/admin.py:26
+msgid "Actors"
+msgstr "Актеры"
+
+#: apps/content/admin.py:29
+msgid "Availability"
+msgstr "Доступность"
+
+#: apps/content/admin.py:51
+msgid "Personal Information"
+msgstr "Личная информация"
+
+#: apps/content/admin.py:54
+msgid "Details"
+msgstr "Детали"
+
+#: apps/content/apps.py:8
+msgid "content"
+msgstr "содержание"
+
+#: apps/content/models.py:15 apps/content/models.py:31
+#: apps/content/models.py:47
+msgid "title"
+msgstr "заглавие"
+
+#: apps/content/models.py:17 apps/content/models.py:33
+#: apps/content/models.py:62 apps/content/models.py:84
+msgid "is_active"
+msgstr "активен"
+
+#: apps/content/models.py:25 apps/content/models.py:85
+msgid "language"
+msgstr "язык"
+
+#: apps/content/models.py:26
+msgid "languages"
+msgstr "языки"
+
+#: apps/content/models.py:32
+msgid "description"
+msgstr "описание"
+
+#: apps/content/models.py:41
+msgid "slug_page"
+msgstr "слаг страницы"
+
+#: apps/content/models.py:42
+msgid "slug_pages"
+msgstr "слаги страниц"
+
+#: apps/content/models.py:48
+msgid "annotation"
+msgstr "аннотация"
+
+#: apps/content/models.py:49
+msgid "is_featured"
+msgstr "выделен"
+
+#: apps/content/models.py:50
+msgid "youtube_link"
+msgstr "ссылка на YouTube"
+
+#: apps/content/models.py:51
+msgid "year"
+msgstr "год"
+
+#: apps/content/models.py:52
+msgid "country"
+msgstr "страна"
+
+#: apps/content/models.py:53
+msgid "genre"
+msgstr "жанр"
+
+#: apps/content/models.py:54
+msgid "episode"
+msgstr "эпизод"
+
+#: apps/content/models.py:55
+msgid "original_title"
+msgstr "оригинальное название"
+
+#: apps/content/models.py:56
+msgid "running_time"
+msgstr "длительность"
+
+#: apps/content/models.py:57
+msgid "original_language"
+msgstr "оригинальный язык"
+
+#: apps/content/models.py:58
+msgid "directed_by"
+msgstr "режиссёр"
+
+#: apps/content/models.py:59
+msgid "written_by"
+msgstr "написано"
+
+#: apps/content/models.py:60
+msgid "cinematography"
+msgstr "операторская работа"
+
+#: apps/content/models.py:61
+msgid "cast"
+msgstr "состав"
+
+#: apps/content/models.py:63
+msgid "created_at"
+msgstr "создано в"
+
+#: apps/content/models.py:64
+msgid "updated_at"
+msgstr "обновлено в"
+
+#: apps/content/models.py:72
+msgid "product"
+msgstr "продукт"
+
+#: apps/content/models.py:73
+msgid "products"
+msgstr "продукты"
+
+#: apps/content/models.py:77
+msgid "video_original"
+msgstr "оригинальное видео"
+
+#: apps/content/models.py:78
+msgid "thumbnail"
+msgstr "миниатюра"
+
+#: apps/content/models.py:79
+msgid "video_480"
+msgstr "видео 480"
+
+#: apps/content/models.py:80
+msgid "video_720"
+msgstr "видео 720"
+
+#: apps/content/models.py:81
+msgid "video_1080"
+msgstr "видео 1080"
+
+#: apps/content/models.py:83
+msgid "duration"
+msgstr "длительность"
+
+#: apps/content/models.py:104
+msgid "video"
+msgstr "видео"
+
+#: apps/content/models.py:105
+msgid "videos"
+msgstr "видео"
+
+#: apps/content/views.py:46
+msgid "Invalid quality parameter"
+msgstr "Неверный параметр качества"
+
+#: root/settings/i18n.py:19
+msgid "English"
+msgstr "Английский"
+
+#: root/settings/i18n.py:19
+msgid "Russian"
+msgstr "Русский"
+
+#: root/settings/i18n.py:19
+msgid "Uzbek"
+msgstr "Узбекский"
+
+#: root/settings/jazzmin_configs.py:29
+msgid "Welcome to the UZB Content"
+msgstr "Добро пожаловать в контент Узбекистана"
+
+#: root/settings/jazzmin_configs.py:47
+msgid "Go back to website"
+msgstr "Вернуться на веб-сайт"

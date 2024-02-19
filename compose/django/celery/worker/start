@@ -3,4 +3,4 @@
 set -o errexit
 set -o nounset
 
-celery -A root worker -l INFO
+celery -A root worker -l INFO --pool=solo

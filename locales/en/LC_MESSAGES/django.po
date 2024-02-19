@@ -1,0 +1,204 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-02-19 08:00+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+#: apps/content/admin.py:19
+msgid "Metadata"
+msgstr ""
+
+#: apps/content/admin.py:23
+msgid "Creators"
+msgstr ""
+
+#: apps/content/admin.py:26
+msgid "Actors"
+msgstr ""
+
+#: apps/content/admin.py:29
+msgid "Availability"
+msgstr ""
+
+#: apps/content/admin.py:51
+msgid "Personal Information"
+msgstr ""
+
+#: apps/content/admin.py:54
+msgid "Details"
+msgstr ""
+
+#: apps/content/apps.py:8
+msgid "content"
+msgstr ""
+
+#: apps/content/models.py:15 apps/content/models.py:31
+#: apps/content/models.py:47
+msgid "title"
+msgstr ""
+
+#: apps/content/models.py:17 apps/content/models.py:33
+#: apps/content/models.py:62 apps/content/models.py:84
+msgid "is_active"
+msgstr ""
+
+#: apps/content/models.py:25 apps/content/models.py:85
+msgid "language"
+msgstr ""
+
+#: apps/content/models.py:26
+msgid "languages"
+msgstr ""
+
+#: apps/content/models.py:32
+msgid "description"
+msgstr ""
+
+#: apps/content/models.py:41
+msgid "slug_page"
+msgstr ""
+
+#: apps/content/models.py:42
+msgid "slug_pages"
+msgstr ""
+
+#: apps/content/models.py:48
+msgid "annotation"
+msgstr ""
+
+#: apps/content/models.py:49
+msgid "is_featured"
+msgstr ""
+
+#: apps/content/models.py:50
+msgid "youtube_link"
+msgstr ""
+
+#: apps/content/models.py:51
+msgid "year"
+msgstr ""
+
+#: apps/content/models.py:52
+msgid "country"
+msgstr ""
+
+#: apps/content/models.py:53
+msgid "genre"
+msgstr ""
+
+#: apps/content/models.py:54
+msgid "episode"
+msgstr ""
+
+#: apps/content/models.py:55
+msgid "original_title"
+msgstr ""
+
+#: apps/content/models.py:56
+msgid "running_time"
+msgstr ""
+
+#: apps/content/models.py:57
+msgid "original_language"
+msgstr ""
+
+#: apps/content/models.py:58
+msgid "directed_by"
+msgstr ""
+
+#: apps/content/models.py:59
+msgid "written_by"
+msgstr ""
+
+#: apps/content/models.py:60
+msgid "cinematography"
+msgstr ""
+
+#: apps/content/models.py:61
+msgid "cast"
+msgstr ""
+
+#: apps/content/models.py:63
+msgid "created_at"
+msgstr ""
+
+#: apps/content/models.py:64
+msgid "updated_at"
+msgstr ""
+
+#: apps/content/models.py:72
+msgid "product"
+msgstr ""
+
+#: apps/content/models.py:73
+msgid "products"
+msgstr ""
+
+#: apps/content/models.py:77
+msgid "video_original"
+msgstr ""
+
+#: apps/content/models.py:78
+msgid "thumbnail"
+msgstr ""
+
+#: apps/content/models.py:79
+msgid "video_480"
+msgstr ""
+
+#: apps/content/models.py:80
+msgid "video_720"
+msgstr ""
+
+#: apps/content/models.py:81
+msgid "video_1080"
+msgstr ""
+
+#: apps/content/models.py:83
+msgid "duration"
+msgstr ""
+
+#: apps/content/models.py:104
+msgid "video"
+msgstr ""
+
+#: apps/content/models.py:105
+msgid "videos"
+msgstr ""
+
+#: apps/content/views.py:46
+msgid "Invalid quality parameter"
+msgstr ""
+
+#: root/settings/i18n.py:19
+msgid "English"
+msgstr ""
+
+#: root/settings/i18n.py:19
+msgid "Russian"
+msgstr ""
+
+#: root/settings/i18n.py:19
+msgid "Uzbek"
+msgstr ""
+
+#: root/settings/jazzmin_configs.py:29
+msgid "Welcome to the UZB Content"
+msgstr ""
+
+#: root/settings/jazzmin_configs.py:47
+msgid "Go back to website"
+msgstr ""

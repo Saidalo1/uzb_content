@@ -1,13 +1,12 @@
 from django.contrib.admin import register, TabularInline, ModelAdmin
-from django.utils.translation import gettext_lazy as _
 from parler.admin import TranslatableAdmin
 
-from apps.content.models import Products, Video, Languages
+from apps.content.models import Products, Video, Languages, SlugPage
 
 
 class VideoInline(TabularInline):
     model = Video
-    fields = ('language', 'video_original', 'is_active')
+    fields = ('language', 'video_original',)
     extra = 1
     min_num = 1
 
@@ -24,11 +23,16 @@ class ProductsAdmin(TranslatableAdmin):
 
 @register(Languages)
 class LanguagesAdmin(TranslatableAdmin):
-    fields = ('title', 'language_code', 'is_active')
-    list_display = ('title', 'is_active')
-    list_editable = ('is_active',)
+    fields = ('title', 'language_code')
+    list_display = ('title',)
 
 
 @register(Video)
 class VideoAdmin(ModelAdmin):
     list_display = ('video_original', 'language')
+
+
+@register(SlugPage)
+class SlugPageAdmin(TranslatableAdmin):
+    fields = ('title', 'description')
+    list_display = ('title', 'slug')

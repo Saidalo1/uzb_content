@@ -1,11 +1,13 @@
-from time import time
-
+from django.db import IntegrityError
 from django.db.models import DurationField, FileField, ImageField, BooleanField, URLField, \
-    DateTimeField, ForeignKey, SET_NULL, CharField, TextField
+    ForeignKey, SET_NULL, CharField, TextField, SlugField
 from django.db.transaction import on_commit
+from django.template.defaultfilters import slugify
+from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
 from django_ckeditor_5.fields import CKEditor5Field
 from parler.models import TranslatableModel, TranslatedFields
+from unidecode import unidecode
 
 from apps.shared.django.models import TimeBaseModel
 from apps.shared.django.utils.change_video_qualities import transcode_video
@@ -15,7 +17,7 @@ class Languages(TimeBaseModel, TranslatableModel):
     translations = TranslatedFields(
         title=CharField(_('title'), max_length=255),
     )
-    is_active = BooleanField(_('is_active'), default=True)
+    # is_active = BooleanField(_('is_active'), default=True)
     language_code = CharField(max_length=5)
 
     def __str__(self):
@@ -30,9 +32,33 @@ class Languages(TimeBaseModel, TranslatableModel):
 class SlugPage(TimeBaseModel, TranslatableModel):
     translations = TranslatedFields(
         title=CharField(_('title'), max_length=255),
-        description=CKEditor5Field(_('description'), max_length=2048),
-        is_active=BooleanField(_('is_active'), default=True)
+        description=CKEditor5Field(_('description'), max_length=2048)
     )
+    slug = SlugField(_('slug'), db_index=True, unique=True)
+
+    def get_absolute_url(self):
+        return reverse('content:article_detail', kwargs={'slug': self.slug})
+
+    def save(self, *args, **kwargs):
+        self.slug = slugify(unidecode(self.safe_translation_getter('title', any_language=True)))
+        try:
+            super().save(*args, **kwargs)
+            return
+        except IntegrityError:
+            self.slug = self._generate_unique_slug()
+            super().save(*args, **kwargs)
+
+    def _generate_unique_slug(self):
+        """
+        Generate a unique slug by appending a unique number to the original slug.
+        """
+        original_slug = self.slug
+        counter = 1
+        while True:
+            new_slug = f'{original_slug}-{counter}'
+            if not SlugPage.objects.filter(slug=new_slug).exists():
+                return new_slug
+            counter += 1
 
     def __str__(self):
         return f"{self.safe_translation_getter('title', any_language=True)}"
@@ -59,7 +85,7 @@ class Products(TimeBaseModel, TranslatableModel):
         written_by=CharField(_('written_by'), max_length=255),
         cinematography=CharField(_('cinematography'), max_length=255),
         cast=CharField(_('cast'), max_length=255),
-        is_active=BooleanField(_('is_active'), default=True),
+        # is_active=BooleanField(_('is_active'), default=True),
         thumbnail=ImageField(_('thumbnail'), upload_to='thumbnails/'),
     )
     is_featured = BooleanField(_('is_featured'), default=False)
@@ -80,7 +106,7 @@ class Video(TimeBaseModel):
     video_1080 = FileField(_('video_1080'), upload_to='videos/1080p', null=True, blank=True, max_length=255)
     product = ForeignKey('content.Products', SET_NULL, 'video', null=True, blank=True, max_length=255)
     duration = DurationField(_('duration'), null=True, blank=True)
-    is_active = BooleanField(_('is_active'), default=True)
+    # is_active = BooleanField(_('is_active'), default=True)
     language = ForeignKey('content.Languages', SET_NULL, 'language', verbose_name=_('language'), null=True, blank=True)
 
     def save(self, force_insert=False, force_update=False, using=None, update_fields=None):
@@ -89,7 +115,6 @@ class Video(TimeBaseModel):
         on_commit(lambda: transcode_video.delay(self.pk))
 
     def __str__(self):
-        print(self.video_original)
         return f"{self.video_original.name} - {self.language.language_code}"
 
     class Meta:

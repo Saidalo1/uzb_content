@@ -8,7 +8,7 @@ from environ.environ import Env
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
 # Take environment variables from .env file
-Env.read_env(join(BASE_DIR, '.env/.env'))
+Env.read_env(join(BASE_DIR, '.env/.env.prod'))
 env = Env(DEBUG=(bool, False))
 
 # Apps in this folder

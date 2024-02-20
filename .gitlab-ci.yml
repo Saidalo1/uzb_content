@@ -3,7 +3,6 @@ stages:
   
 deploy:
   stage: deploy
-  tags: [ uzbcontent ]
   script:
     - ssh proactive@109.205.182.6 -p 22337 "cd /var/www/uzbcontent/uzbcontent-back && git pull && docker-compose up web -d --build"
     - ssh proactive@109.205.182.6 -p 22337 "cd /var/www/uzbcontent/uzbcontent-back && docker-compose run --rm web python manage.py migrate"

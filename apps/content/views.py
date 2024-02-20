@@ -22,7 +22,7 @@ class ProductListAPIView(ListAPIView):
         return context
 
     def get_queryset(self):
-        return Products.objects.filter(is_featured=True).order_by('-created_at')
+        return Products.objects.filter(is_featured=True).prefetch_related('translations').order_by('-created_at')
 
 
 class ProductFeaturedAPIView(ListAPIView):
@@ -34,7 +34,7 @@ class ProductFeaturedAPIView(ListAPIView):
         return context
 
     def get_queryset(self):
-        return Products.objects.filter(is_featured=True).order_by('-created_at')[:7]
+        return Products.objects.filter(is_featured=True).prefetch_related('translations').order_by('-created_at')[:7]
 
 
 class ProductDetailAPIView(ListAPIView):
@@ -46,11 +46,11 @@ class ProductDetailAPIView(ListAPIView):
         return context
 
     def get_queryset(self):
-        return Products.objects.filter(pk=self.kwargs.get('pk'))
+        return Products.objects.filter(pk=self.kwargs.get('pk')).prefetch_related('translations')
 
 
 class SlugPageRetrieveListAPIView(RetrieveAPIView):
-    queryset = SlugPage.objects.all()
+    queryset = SlugPage.objects.prefetch_related('translations')
     serializer_class = SlugModelDetailSerializer
     lookup_field = 'slug'
     lookup_url_kwarg = 'slug'

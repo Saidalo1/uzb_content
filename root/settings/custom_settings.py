@@ -19,5 +19,11 @@ qualities = {
 
 # Debug toolbar
 INTERNAL_IPS = [
-    "127.0.0.1", "localhost"
+    "127.0.0.1", "localhost", "172.23.0.1"
+]
+
+languages_to_create = [
+    {"label": "O'zbek", "language_code": 'uz'},
+    {"label": "Русский язык", "language_code": 'ru'},
+    {"label": "English", "language_code": 'en'}
 ]

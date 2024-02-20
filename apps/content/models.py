@@ -13,15 +13,12 @@ from apps.shared.django.models import TimeBaseModel
 from apps.shared.django.utils.change_video_qualities import transcode_video
 
 
-class Languages(TimeBaseModel, TranslatableModel):
-    translations = TranslatedFields(
-        title=CharField(_('title'), max_length=255),
-    )
-    # is_active = BooleanField(_('is_active'), default=True)
+class Languages(TimeBaseModel):
+    label = CharField(_('title'), max_length=255)
     language_code = CharField(max_length=5)
 
     def __str__(self):
-        return f"{self.safe_translation_getter('title', any_language=True)}"
+        return self.label
 
     class Meta:
         db_table = 'language'

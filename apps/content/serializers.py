@@ -16,7 +16,7 @@ class ProductsModelListSerializer(ModelSerializer):
 
     class Meta:
         model = Products
-        fields = ('id', 'title')
+        fields = ('id', 'title', 'annotation')
 
 
 class ProductsModelDetailSerializer(ModelSerializer):

@@ -6,6 +6,9 @@ CSRF_TRUSTED_ORIGINS = ['https://cp.uzbcontent.com', 'https://uzbcontent.com', '
 CORS_ORIGIN_WHITELIST = (
     "http://localhost:3000", "http://192.168.*", "http://172.23.0.1", 'https://cp.uzbcontent.com',
     'https://uzbcontent.com')
+CORS_ALLOWED_ORIGINS = ["http://localhost:3000", "https://clindoc.netlify.app", "https://clindoc.uz",
+                        "http://192.168.*", "http://172.23.0.1"]
+
 
 # Celery results
 CELERY_RESULT_BACKEND = 'django-db'

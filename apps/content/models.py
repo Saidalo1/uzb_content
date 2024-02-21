@@ -15,7 +15,7 @@ from apps.shared.django.utils.change_video_qualities import transcode_video
 
 class Languages(TimeBaseModel):
     label = CharField(_('title'), max_length=255)
-    language_code = CharField(max_length=5)
+    language_code = CharField(max_length=5, unique=True)
 
     def __str__(self):
         return self.label

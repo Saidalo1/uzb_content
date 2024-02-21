@@ -1,7 +1,7 @@
 # Origins
 import socket
 
-CSRF_TRUSTED_ORIGINS = ('https://cp.uzbcontent.com', 'https://uzbcontent.com', 'http://172.23.0.1:8001')
+CSRF_TRUSTED_ORIGINS = ('https://cp.uzbcontent.com', 'https://uzbcontent.com', 'http://172.23.0.1:8888')
 
 # Django Core
 CORS_ALLOWED_ORIGINS = ["http://localhost:3000", "https://uzbcontent.netlify.app", "https://uzbcontent.uz",

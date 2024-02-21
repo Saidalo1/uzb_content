@@ -26,7 +26,7 @@ class ProductsModelDetailSerializer(ModelSerializer):
 
         video_urls = {}
 
-        for video in instance.video.filter(is_active=True).exclude(
+        for video in instance.video.exclude(
                 Q(video_480__isnull=True) | Q(video_480__exact=''),
                 Q(video_720__isnull=True) | Q(video_720__exact=''),
                 Q(video_1080__isnull=True) | Q(video_1080__exact='')

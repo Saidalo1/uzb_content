@@ -39,7 +39,7 @@ class ProductFeaturedAPIView(ListAPIView):
         return Products.objects.filter(is_featured=True).prefetch_related('translations').order_by('-created_at')[:7]
 
 
-class ProductDetailAPIView(ListAPIView):
+class ProductDetailAPIView(RetrieveAPIView):
     serializer_class = ProductsModelDetailSerializer
 
     def get_serializer_context(self):

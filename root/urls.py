@@ -16,10 +16,10 @@ schema_view = get_schema_view(
         description="Uzbekistan Content Back-End",
         terms_of_service="https://www.google.com/policies/terms/",
         contact=Contact(email="contact@snippets.local"),
-        generator_class=BothHttpAndHttpsSchemaGenerator,
         license=License(name="BSD License"),
     ),
     public=True,
+    generator_class=BothHttpAndHttpsSchemaGenerator,
     permission_classes=[AllowAny]
 )
 

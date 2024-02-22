@@ -4,7 +4,7 @@ import socket
 # Django Core
 CSRF_TRUSTED_ORIGINS = ['https://cp.uzbcontent.com', 'https://uzbcontent.com', 'http://172.23.0.1:8888',
                         'https://*.uzbcontent.com']
-CORS_ALLOWED_ORIGINS = ["http://localhost:3000", 'https://uzbcontent.com']
+CORS_ALLOWED_ORIGINS = ["http://localhost:3000", 'https://uzbcontent.com', 'https://cp.uzbcontent.com']
 
 # Celery results
 CELERY_RESULT_BACKEND = 'django-db'
@@ -21,8 +21,9 @@ qualities = {
 hostname, _, ips = socket.gethostbyname_ex(socket.gethostname())
 INTERNAL_IPS = [ip[: ip.rfind(".")] + ".1" for ip in ips] + ["127.0.0.1", "localhost", "172.23.0.1"]
 
-languages_to_create = [
-    {"label": "O'zbek", "language_code": 'uz'},
-    {"label": "Русский язык", "language_code": 'ru'},
-    {"label": "English", "language_code": 'en'}
-]
+languages_to_create = {'uz': "O'zbek", 'ru': "Русский язык", 'en': "English"}
+languages_to_create_keys = languages_to_create.keys()
+
+# Django Media https
+USE_X_FORWARDED_HOST = True
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')

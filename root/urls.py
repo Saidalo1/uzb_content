@@ -6,6 +6,7 @@ from drf_yasg.openapi import Info, License, Contact
 from drf_yasg.views import get_schema_view
 from rest_framework.permissions import AllowAny
 
+from apps.shared.django import BothHttpAndHttpsSchemaGenerator
 from root.settings import DEBUG, STATIC_ROOT, MEDIA_ROOT
 
 schema_view = get_schema_view(
@@ -15,6 +16,7 @@ schema_view = get_schema_view(
         description="Uzbekistan Content Back-End",
         terms_of_service="https://www.google.com/policies/terms/",
         contact=Contact(email="contact@snippets.local"),
+        generator_class=BothHttpAndHttpsSchemaGenerator,
         license=License(name="BSD License"),
     ),
     public=True,

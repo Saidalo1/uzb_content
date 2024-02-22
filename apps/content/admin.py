@@ -2,7 +2,7 @@ from django.contrib.admin import register, TabularInline, ModelAdmin
 from parler.admin import TranslatableAdmin
 
 from apps.content.models import Products, Video, Languages, SlugPage
-from root.settings import languages_to_create
+from root.settings import languages_to_create_keys
 
 
 class VideoInline(TabularInline):
@@ -29,14 +29,12 @@ class LanguagesAdmin(ModelAdmin):
 
     def get_readonly_fields(self, request, obj=None):
         readonly_fields = list(super().get_readonly_fields(request, obj))
-        if obj and any(obj.language_code in item.values() for item in languages_to_create):
+        if obj and obj in languages_to_create_keys:
             readonly_fields.extend(['language_code'])
         return readonly_fields
 
     def has_delete_permission(self, request, obj=None):
-        if obj and any(obj.language_code in item.values() for item in languages_to_create):
-            return False
-        return True
+        return False if obj and obj in languages_to_create_keys else super().has_delete_permission(request, obj)
 
 
 @register(Video)

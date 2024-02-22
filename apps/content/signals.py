@@ -7,8 +7,8 @@ from root.settings import languages_to_create
 
 @receiver(post_migrate)
 def create_languages(sender, **kwargs):
-    for language_data in languages_to_create:
+    for lang, title in languages_to_create.items():
         try:
-            Languages.objects.get_or_create(**language_data)
+            Languages.objects.get_or_create(language_code=lang, label=title)
         except:
             pass

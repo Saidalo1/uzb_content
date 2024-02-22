@@ -1,3 +1,5 @@
+from django.db.models import Subquery, F, Value, OuterRef
+from django.db.models.functions import JSONObject, Coalesce
 from rest_framework.filters import SearchFilter
 from rest_framework.generics import ListAPIView, RetrieveAPIView
 
@@ -46,7 +48,48 @@ class ProductDetailAPIView(ListAPIView):
         return context
 
     def get_queryset(self):
-        return Products.objects.filter(pk=self.kwargs.get('pk')).prefetch_related('translations')
+        current_pk = self.kwargs.get('pk')
+        current_language = self.request.LANGUAGE_CODE
+
+        thumbnail_subquery = Products.objects.filter(
+            pk=OuterRef('pk'),
+            translations__language_code=current_language
+        ).values('translations__thumbnail')[:1]
+        # title_subquery = Products.objects.filter(
+        #     pk=OuterRef('pk'),
+        #     translations__language_code=current_language
+        # ).values('translations__title')[:1]
+
+        queryset = Products.objects.filter(pk=current_pk).annotate(
+            previous_obj=Subquery(
+                Products.objects.filter(pk__lt=current_pk).order_by('-pk').values(
+                    'pk'
+                ).annotate(
+                    thumbnail=Coalesce(thumbnail_subquery, F('translations__thumbnail')),
+                    # title=Coalesce(title_subquery, F('translations__title')),
+                    obj=JSONObject(
+                        id=F('pk'),
+                        thumbnail=F('thumbnail'),
+                        # title=F('title')
+                    )
+                ).values('obj')[:1]
+            ),
+            next_obj=Subquery(
+                Products.objects.filter(pk__gt=current_pk).order_by('pk').values(
+                    'pk'
+                ).annotate(
+                    thumbnail=Coalesce(thumbnail_subquery, F('translations__thumbnail')),
+                    # title=Coalesce(title_subquery, F('translations__title')),
+                    obj=JSONObject(
+                        id=F('pk'),
+                        thumbnail=F('thumbnail'),
+                        # title=F('title')
+                    )
+                ).values('obj')[:1]
+            )
+        ).prefetch_related('translations')
+
+        return queryset
 
 
 class SlugPageRetrieveListAPIView(RetrieveAPIView):

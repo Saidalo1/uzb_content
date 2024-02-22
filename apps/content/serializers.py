@@ -4,6 +4,7 @@ from rest_framework.serializers import ModelSerializer
 
 from apps.content.models import Products, SlugPage
 from apps.shared.django.models import TranslatedSerializerMixin
+from root.settings import MEDIA_URL
 
 
 class ProductsModelListSerializer(ModelSerializer):
@@ -48,6 +49,15 @@ class ProductsModelDetailSerializer(ModelSerializer):
 
         representation['video_urls'] = video_urls
         representation['thumbnail'] = request.build_absolute_uri(instance.thumbnail.url)
+
+        next_obj, previous_obj = instance.next_obj, instance.previous_obj
+        base_url = request.build_absolute_uri('/')
+        if next_obj:
+            next_obj['thumbnail'] = base_url + MEDIA_URL + next_obj['thumbnail']
+            representation['next_obj'] = next_obj
+        if previous_obj:
+            previous_obj['thumbnail'] = base_url + MEDIA_URL + previous_obj['thumbnail']
+            representation['previous_obj'] = previous_obj
         return representation
 
     class Meta:

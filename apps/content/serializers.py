@@ -25,14 +25,13 @@ class ProductsModelDetailSerializer(ModelSerializer):
         request = self.context['request']
         representation = super().to_representation(instance)
 
-        video_urls = {}
+        video_urls = []
 
         for video in instance.video.exclude(
                 Q(video_480__isnull=True) | Q(video_480__exact=''),
                 Q(video_720__isnull=True) | Q(video_720__exact=''),
                 Q(video_1080__isnull=True) | Q(video_1080__exact='')
         ):
-            lang_code = video.language.language_code
             video_data = {}
 
             if video.video_480:
@@ -41,11 +40,10 @@ class ProductsModelDetailSerializer(ModelSerializer):
                 video_data["video_720"] = request.build_absolute_uri(video.video_720.url)
             if video.video_1080:
                 video_data["video_1080"] = request.build_absolute_uri(video.video_1080.url)
-
-            if lang_code in video_urls:
-                video_urls[lang_code].update(video_data)
-            else:
-                video_urls[lang_code] = video_data
+            if any(video_data.values()):
+                video_language = video.language
+                video_data['language'] = {'title': video_language.label, 'code': video_language.language_code}
+            video_urls.append(video_data)
 
         representation['video_urls'] = video_urls
         representation['thumbnail'] = request.build_absolute_uri(instance.thumbnail.url)

@@ -6,10 +6,12 @@ django-cors-headers==4.3.1
 django-debug-toolbar==4.3.0
 django-environ==0.11.2
 django-filter==23.5
+#django-imagekit==5.0.0
 django-jazzmin==2.6.0
 django-parler==2.3
 django-parler-rest==2.2
 django-redis==5.4.0
+django-resized==1.0.2
 djangorestframework==3.14.0
 drf-yasg==1.21.7
 ffmpeg-python==0.2.0

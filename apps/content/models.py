@@ -1,11 +1,12 @@
 from django.db import IntegrityError
-from django.db.models import DurationField, FileField, ImageField, BooleanField, URLField, \
+from django.db.models import DurationField, FileField, BooleanField, URLField, \
     ForeignKey, SET_NULL, CharField, TextField, SlugField
 from django.db.transaction import on_commit
 from django.template.defaultfilters import slugify
 from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
 from django_ckeditor_5.fields import CKEditor5Field
+from django_resized import ResizedImageField
 from parler.models import TranslatableModel, TranslatedFields
 from unidecode import unidecode
 
@@ -83,7 +84,9 @@ class Products(TimeBaseModel, TranslatableModel):
         cinematography=CharField(_('cinematography'), max_length=255),
         cast=CharField(_('cast'), max_length=255),
         # is_active=BooleanField(_('is_active'), default=True),
-        thumbnail=ImageField(_('thumbnail'), upload_to='thumbnails/'),
+        # thumbnail=ImageField(_('thumbnail'), upload_to='thumbnails/'),
+        thumbnail=ResizedImageField(_('thumbnail'), upload_to='thumbnails/', size=[640, 360], quality=80,
+                                    force_format='WEBP', crop=['middle', 'center'])
     )
     is_featured = BooleanField(_('is_featured'), default=False)
 

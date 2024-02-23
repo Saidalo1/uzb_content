@@ -24,7 +24,7 @@ class ProductListAPIView(ListAPIView):
         return context
 
     def get_queryset(self):
-        return Products.objects.filter(is_featured=True).prefetch_related('translations').order_by('-created_at')
+        return Products.objects.translated(self.request.LANGUAGE_CODE).prefetch_related('translations').order_by('-created_at')
 
 
 class ProductFeaturedAPIView(ListAPIView):

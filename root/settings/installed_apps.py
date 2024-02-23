@@ -23,4 +23,5 @@ INSTALLED_APPS = [
     'debug_toolbar',
     'django_ckeditor_5',
     'django_celery_results',
+    # 'imagekit'
 ]

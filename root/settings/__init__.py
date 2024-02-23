@@ -6,7 +6,7 @@ from root.settings.custom_settings import CSRF_TRUSTED_ORIGINS, CELERY_RESULT_EX
     DJANGORESIZED_DEFAULT_QUALITY, DJANGORESIZED_DEFAULT_SIZE
 from root.settings.databases import DATABASES
 from root.settings.default_settings import *
-from root.settings.i18n import LANGUAGE_CODE, TIME_ZONE, USE_I18N, USE_TZ, PARLER_LANGUAGES, LOCALE_PATHS
+from root.settings.i18n import LANGUAGE_CODE, TIME_ZONE, USE_I18N, USE_TZ, PARLER_LANGUAGES, LOCALE_PATHS, LANGUAGES
 from root.settings.installed_apps import INSTALLED_APPS
 from root.settings.jazzmin_configs import JAZZMIN_SETTINGS
 from root.settings.middlewares import MIDDLEWARE

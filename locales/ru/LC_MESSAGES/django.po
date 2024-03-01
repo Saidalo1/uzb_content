@@ -3,12 +3,11 @@
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-02-19 08:00+0000\n"
+"POT-Creation-Date: 2024-03-01 21:26+0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,184 +18,169 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || "
 "(n%100>=11 && n%100<=14)? 2 : 3);\n"
+
 #: apps/content/admin.py:19
-#: apps/content/admin.py:19
-msgid "Metadata"
-msgstr "Метаданные"
+msgid "General"
+msgstr "Основной"
 
-#: apps/content/admin.py:23
-msgid "Creators"
-msgstr "Создатели"
-
-#: apps/content/admin.py:26
-msgid "Actors"
-msgstr "Актеры"
-
-#: apps/content/admin.py:29
-msgid "Availability"
-msgstr "Доступность"
-
-#: apps/content/admin.py:51
-msgid "Personal Information"
-msgstr "Личная информация"
-
-#: apps/content/admin.py:54
-msgid "Details"
-msgstr "Детали"
+#: apps/content/admin.py:31 apps/content/models.py:20 apps/content/models.py:34
+#: apps/content/models.py:74
+msgid "title"
+msgstr "заглавие"
 
 #: apps/content/apps.py:8
 msgid "content"
 msgstr "содержание"
 
-#: apps/content/models.py:15 apps/content/models.py:31
-#: apps/content/models.py:47
-msgid "title"
-msgstr "заглавие"
-
-#: apps/content/models.py:17 apps/content/models.py:33
-#: apps/content/models.py:62 apps/content/models.py:84
-msgid "is_active"
-msgstr "активен"
-
-#: apps/content/models.py:25 apps/content/models.py:85
+#: apps/content/models.py:28 apps/content/models.py:120
 msgid "language"
 msgstr "язык"
 
-#: apps/content/models.py:26
+#: apps/content/models.py:29
 msgid "languages"
 msgstr "языки"
 
-#: apps/content/models.py:32
+#: apps/content/models.py:35
 msgid "description"
 msgstr "описание"
 
-#: apps/content/models.py:41
+#: apps/content/models.py:37
+#| msgid "slug_page"
+msgid "slug"
+msgstr "слаг страницы"
+
+#: apps/content/models.py:68
 msgid "slug_page"
 msgstr "слаг страницы"
 
-#: apps/content/models.py:42
+#: apps/content/models.py:69
 msgid "slug_pages"
 msgstr "слаги страниц"
 
-#: apps/content/models.py:48
+#: apps/content/models.py:75
 msgid "annotation"
 msgstr "аннотация"
 
-#: apps/content/models.py:49
-msgid "is_featured"
-msgstr "выделен"
-
-#: apps/content/models.py:50
+#: apps/content/models.py:76
 msgid "youtube_link"
 msgstr "ссылка на YouTube"
 
-#: apps/content/models.py:51
+#: apps/content/models.py:77
 msgid "year"
 msgstr "год"
 
-#: apps/content/models.py:52
+#: apps/content/models.py:78
 msgid "country"
 msgstr "страна"
 
-#: apps/content/models.py:53
+#: apps/content/models.py:79
 msgid "genre"
 msgstr "жанр"
 
-#: apps/content/models.py:54
+#: apps/content/models.py:80
 msgid "episode"
 msgstr "эпизод"
 
-#: apps/content/models.py:55
+#: apps/content/models.py:81
 msgid "original_title"
 msgstr "оригинальное название"
 
-#: apps/content/models.py:56
+#: apps/content/models.py:82
 msgid "running_time"
 msgstr "длительность"
 
-#: apps/content/models.py:57
+#: apps/content/models.py:83
 msgid "original_language"
 msgstr "оригинальный язык"
 
-#: apps/content/models.py:58
+#: apps/content/models.py:84
 msgid "directed_by"
 msgstr "режиссёр"
 
-#: apps/content/models.py:59
+#: apps/content/models.py:85
 msgid "written_by"
 msgstr "написано"
 
-#: apps/content/models.py:60
+#: apps/content/models.py:86
 msgid "cinematography"
 msgstr "операторская работа"
 
-#: apps/content/models.py:61
+#: apps/content/models.py:87
 msgid "cast"
 msgstr "состав"
 
-#: apps/content/models.py:63
-msgid "created_at"
-msgstr "создано в"
+#: apps/content/models.py:88
+#| msgid "product"
+msgid "production"
+msgstr "продукция"
 
-#: apps/content/models.py:64
-msgid "updated_at"
-msgstr "обновлено в"
-
-#: apps/content/models.py:72
-msgid "product"
-msgstr "продукт"
-
-#: apps/content/models.py:73
-msgid "products"
-msgstr "продукты"
-
-#: apps/content/models.py:77
-msgid "video_original"
-msgstr "оригинальное видео"
-
-#: apps/content/models.py:78
+#: apps/content/models.py:91
 msgid "thumbnail"
 msgstr "миниатюра"
 
-#: apps/content/models.py:79
+#: apps/content/models.py:94
+msgid "video_original"
+msgstr "оригинальное видео"
+
+#: apps/content/models.py:95
 msgid "video_480"
 msgstr "видео 480"
 
-#: apps/content/models.py:80
+#: apps/content/models.py:96
 msgid "video_720"
 msgstr "видео 720"
 
-#: apps/content/models.py:81
+#: apps/content/models.py:97
 msgid "video_1080"
 msgstr "видео 1080"
 
-#: apps/content/models.py:83
+#: apps/content/models.py:98
+msgid "is_featured"
+msgstr "выделен"
+
+#: apps/content/models.py:111
+msgid "product"
+msgstr "продукт"
+
+#: apps/content/models.py:112
+msgid "products"
+msgstr "продукты"
+
+#: apps/content/models.py:116 apps/content/models.py:128
+msgid "audio"
+msgstr "аудио"
+
+#: apps/content/models.py:118
 msgid "duration"
 msgstr "длительность"
 
-#: apps/content/models.py:104
-msgid "video"
-msgstr "видео"
+#: apps/content/models.py:129
+msgid "audios"
+msgstr "аудио"
 
-#: apps/content/models.py:105
-msgid "videos"
-msgstr "видео"
+#: apps/shared/django/utils/change_video_qualities.py:11
+msgid "Split and sort video files into different qualities"
+msgstr "Разделение и сортировка видео файлов на разные качество"
 
-#: apps/content/views.py:46
-msgid "Invalid quality parameter"
-msgstr "Неверный параметр качества"
+#: apps/shared/django/utils/validators.py:21
+msgid "Invalid format of audiofile. Please, upload a valid audio file!"
+msgstr "Не правильный формат аудиофайла. Пожалуйста, загружайте в правильном формате!"
 
-#: root/settings/i18n.py:19
+#: root/settings/i18n.py:18
 msgid "English"
 msgstr "Английский"
 
-#: root/settings/i18n.py:19
+#: root/settings/i18n.py:18
 msgid "Russian"
 msgstr "Русский"
 
-#: root/settings/i18n.py:19
+#: root/settings/i18n.py:18
 msgid "Uzbek"
 msgstr "Узбекский"
+
+#: root/settings/i18n.py:18
+msgid "Arabic"
+msgstr "Арабский"
 
 #: root/settings/jazzmin_configs.py:29
 msgid "Welcome to the UZB Content"
@@ -205,3 +189,39 @@ msgstr "Добро пожаловать в контент Узбекистана
 #: root/settings/jazzmin_configs.py:47
 msgid "Go back to website"
 msgstr "Вернуться на веб-сайт"
+
+msgid "Metadata"
+msgstr "Метаданные"
+
+msgid "Creators"
+msgstr "Создатели"
+
+msgid "Actors"
+msgstr "Актеры"
+
+msgid "Availability"
+msgstr "Доступность"
+
+msgid "Personal Information"
+msgstr "Личная информация"
+
+msgid "Details"
+msgstr "Детали"
+
+msgid "is_active"
+msgstr "активен"
+
+msgid "created_at"
+msgstr "создано в"
+
+msgid "updated_at"
+msgstr "обновлено в"
+
+msgid "video"
+msgstr "видео"
+
+msgid "videos"
+msgstr "видео"
+
+msgid "Invalid quality parameter"
+msgstr "Неверный параметр качества"

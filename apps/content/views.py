@@ -1,4 +1,4 @@
-from django.db.models import Subquery, F, Value, OuterRef
+from django.db.models import Subquery, F, OuterRef
 from django.db.models.functions import JSONObject, Coalesce
 from rest_framework.filters import SearchFilter
 from rest_framework.generics import ListAPIView, RetrieveAPIView
@@ -24,7 +24,8 @@ class ProductListAPIView(ListAPIView):
         return context
 
     def get_queryset(self):
-        return Products.objects.translated(self.request.LANGUAGE_CODE).prefetch_related('translations').order_by('-created_at')
+        return Products.objects.translated(self.request.LANGUAGE_CODE).prefetch_related('translations').order_by(
+            '-created_at')
 
 
 class ProductFeaturedAPIView(ListAPIView):

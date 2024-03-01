@@ -7,4 +7,5 @@ set -o nounset
 python manage.py collectstatic --noinput
 python manage.py makemigrations
 python manage.py migrate
+make com_mes
 python manage.py runserver 0.0.0.0:8000

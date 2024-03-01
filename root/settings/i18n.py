@@ -10,11 +10,11 @@ from root.settings import BASE_DIR, env
 
 LANGUAGE_CODE = 'en'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Tashkent'
 
 USE_I18N = True
 
-USE_TZ = True
+USE_TZ = False
 LANGUAGES = [('en', _('English')), ('ru', _('Russian')), ('uz', _('Uzbek')), ('ar', _('Arabic'))]
 
 # Path to save locale files

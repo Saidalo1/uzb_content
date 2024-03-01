@@ -12,6 +12,8 @@ from unidecode import unidecode
 
 from apps.shared.django.models import TimeBaseModel
 from apps.shared.django.utils.change_video_qualities import transcode_video
+from apps.shared.django.utils.utils import audio_upload_path
+from apps.shared.django.utils.validators import AudioValidator
 
 
 class Languages(TimeBaseModel):
@@ -70,25 +72,36 @@ class SlugPage(TimeBaseModel, TranslatableModel):
 class Products(TimeBaseModel, TranslatableModel):
     translations = TranslatedFields(
         title=CharField(_('title'), max_length=255),
-        annotation=TextField(_('annotation')),
-        youtube_link=URLField(_('youtube_link')),
-        year=CharField(_('year'), max_length=255),
-        country=CharField(_('country'), max_length=255),
-        genre=CharField(_('genre'), max_length=255),
-        episode=CharField(_('episode'), max_length=255),
-        original_title=CharField(_('original_title'), max_length=255),
-        running_time=CharField(_('running_time'), max_length=255),
-        original_language=CharField(_('original_language'), max_length=255),
-        directed_by=CharField(_('directed_by'), max_length=255),
-        written_by=CharField(_('written_by'), max_length=255),
-        cinematography=CharField(_('cinematography'), max_length=255),
-        cast=CharField(_('cast'), max_length=255),
+        annotation=TextField(_('annotation'), null=True, blank=True),
+        youtube_link=URLField(_('youtube_link'), null=True, blank=True),
+        year=CharField(_('year'), max_length=255, null=True, blank=True),
+        country=CharField(_('country'), max_length=255, null=True, blank=True),
+        genre=CharField(_('genre'), max_length=255, null=True, blank=True),
+        episode=CharField(_('episode'), max_length=255, null=True, blank=True),
+        original_title=CharField(_('original_title'), max_length=255, null=True, blank=True),
+        running_time=CharField(_('running_time'), max_length=255, null=True, blank=True),
+        original_language=CharField(_('original_language'), max_length=255, null=True, blank=True),
+        directed_by=CharField(_('directed_by'), max_length=255, null=True, blank=True),
+        written_by=CharField(_('written_by'), max_length=255, null=True, blank=True),
+        cinematography=CharField(_('cinematography'), max_length=255, null=True, blank=True),
+        cast=CharField(_('cast'), max_length=255, null=True, blank=True),
+        production=CharField(_('production'), max_length=255, null=True, blank=True),
         # is_active=BooleanField(_('is_active'), default=True),
         # thumbnail=ImageField(_('thumbnail'), upload_to='thumbnails/'),
         thumbnail=ResizedImageField(_('thumbnail'), upload_to='thumbnails/', size=[640, 360], quality=80,
-                                    force_format='WEBP', crop=['middle', 'center'])
+                                    force_format='WEBP', crop=['middle', 'center'], null=True, blank=True)
     )
+    video_original = FileField(_('video_original'), upload_to='videos/', null=True, blank=True)
+    video_480 = FileField(_('video_480'), upload_to='videos/480p', null=True, blank=True, max_length=255)
+    video_720 = FileField(_('video_720'), upload_to='videos/720p', null=True, blank=True, max_length=255)
+    video_1080 = FileField(_('video_1080'), upload_to='videos/1080p', null=True, blank=True, max_length=255)
     is_featured = BooleanField(_('is_featured'), default=False)
+
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
+
+        if self.video_original:
+            on_commit(lambda: transcode_video.delay(self.pk))
 
     def __str__(self):
         return f"{self.safe_translation_getter('title', any_language=True)}"
@@ -99,26 +112,18 @@ class Products(TimeBaseModel, TranslatableModel):
         verbose_name_plural = _('products')
 
 
-class Video(TimeBaseModel):
-    video_original = FileField(_('video_original'), upload_to='videos/')
-    video_480 = FileField(_('video_480'), upload_to='videos/480p', null=True, blank=True, max_length=255)
-    video_720 = FileField(_('video_720'), upload_to='videos/720p', null=True, blank=True, max_length=255)
-    video_1080 = FileField(_('video_1080'), upload_to='videos/1080p', null=True, blank=True, max_length=255)
-    product = ForeignKey('content.Products', SET_NULL, 'video', null=True, blank=True, max_length=255)
+class Audio(TimeBaseModel):
+    audio = FileField(_('audio'), upload_to=audio_upload_path, validators=[AudioValidator()], null=True, blank=True)
+    product = ForeignKey('content.Products', SET_NULL, 'audios', null=True, blank=True, max_length=255)
     duration = DurationField(_('duration'), null=True, blank=True)
     # is_active = BooleanField(_('is_active'), default=True)
     language = ForeignKey('content.Languages', SET_NULL, 'language', verbose_name=_('language'), null=True, blank=True)
 
-    def save(self, force_insert=False, force_update=False, using=None, update_fields=None):
-        super().save(force_insert, force_update, using, update_fields)
-
-        on_commit(lambda: transcode_video.delay(self.pk))
-
     def __str__(self):
-        return f"{self.video_original.name} - {self.language.language_code}"
+        return f"{self.audio.name} - {self.language.language_code}"
 
     class Meta:
         unique_together = ('product', 'language')
-        db_table = 'video'
-        verbose_name = _('video')
-        verbose_name_plural = _('videos')
+        db_table = 'audio'
+        verbose_name = _('audio')
+        verbose_name_plural = _('audios')

@@ -1,14 +1,8 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-01 21:25+0500\n"
+"POT-Creation-Date: 2024-03-01 21:26+0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,173 +10,173 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 
 #: apps/content/admin.py:19
 msgid "General"
-msgstr ""
+msgstr "عام"
 
 #: apps/content/admin.py:31 apps/content/models.py:20 apps/content/models.py:34
 #: apps/content/models.py:74
 msgid "title"
-msgstr ""
+msgstr "العنوان"
 
 #: apps/content/apps.py:8
 msgid "content"
-msgstr ""
+msgstr "المحتوى"
 
 #: apps/content/models.py:28 apps/content/models.py:120
 msgid "language"
-msgstr ""
+msgstr "اللغة"
 
 #: apps/content/models.py:29
 msgid "languages"
-msgstr ""
+msgstr "اللغات"
 
 #: apps/content/models.py:35
 msgid "description"
-msgstr ""
+msgstr "الوصف"
 
 #: apps/content/models.py:37
 msgid "slug"
-msgstr ""
+msgstr "الرابط"
 
 #: apps/content/models.py:68
 msgid "slug_page"
-msgstr ""
+msgstr "رابط الصفحة"
 
 #: apps/content/models.py:69
 msgid "slug_pages"
-msgstr ""
+msgstr "روابط الصفحات"
 
 #: apps/content/models.py:75
 msgid "annotation"
-msgstr ""
+msgstr "التعليق"
 
 #: apps/content/models.py:76
 msgid "youtube_link"
-msgstr ""
+msgstr "رابط يوتيوب"
 
 #: apps/content/models.py:77
 msgid "year"
-msgstr ""
+msgstr "السنة"
 
 #: apps/content/models.py:78
 msgid "country"
-msgstr ""
+msgstr "البلد"
 
 #: apps/content/models.py:79
 msgid "genre"
-msgstr ""
+msgstr "النوع"
 
 #: apps/content/models.py:80
 msgid "episode"
-msgstr ""
+msgstr "الحلقة"
 
 #: apps/content/models.py:81
 msgid "original_title"
-msgstr ""
+msgstr "العنوان الأصلي"
 
 #: apps/content/models.py:82
 msgid "running_time"
-msgstr ""
+msgstr "مدة التشغيل"
 
 #: apps/content/models.py:83
 msgid "original_language"
-msgstr ""
+msgstr "اللغة الأصلية"
 
 #: apps/content/models.py:84
 msgid "directed_by"
-msgstr ""
+msgstr "إخراج"
 
 #: apps/content/models.py:85
 msgid "written_by"
-msgstr ""
+msgstr "الكتابة بواسطة"
 
 #: apps/content/models.py:86
 msgid "cinematography"
-msgstr ""
+msgstr "التصوير السينمائي"
 
 #: apps/content/models.py:87
 msgid "cast"
-msgstr ""
+msgstr "الممثلون"
 
 #: apps/content/models.py:88
 msgid "production"
-msgstr ""
+msgstr "الإنتاج"
 
 #: apps/content/models.py:91
 msgid "thumbnail"
-msgstr ""
+msgstr "الصورة المصغرة"
 
 #: apps/content/models.py:94
 msgid "video_original"
-msgstr ""
+msgstr "الفيديو الأصلي"
 
 #: apps/content/models.py:95
 msgid "video_480"
-msgstr ""
+msgstr "فيديو 480 بكسل"
 
 #: apps/content/models.py:96
 msgid "video_720"
-msgstr ""
+msgstr "فيديو 720 بكسل"
 
 #: apps/content/models.py:97
 msgid "video_1080"
-msgstr ""
+msgstr "فيديو 1080 بكسل"
 
 #: apps/content/models.py:98
 msgid "is_featured"
-msgstr ""
+msgstr "مميز"
 
 #: apps/content/models.py:111
 msgid "product"
-msgstr ""
+msgstr "المنتج"
 
 #: apps/content/models.py:112
 msgid "products"
-msgstr ""
+msgstr "المنتجات"
 
 #: apps/content/models.py:116 apps/content/models.py:128
 msgid "audio"
-msgstr ""
+msgstr "الصوت"
 
 #: apps/content/models.py:118
 msgid "duration"
-msgstr ""
+msgstr "المدة"
 
 #: apps/content/models.py:129
 msgid "audios"
-msgstr ""
+msgstr "التسجيلات الصوتية"
 
 #: apps/shared/django/utils/change_video_qualities.py:11
 msgid "Split and sort video files into different qualities"
-msgstr ""
+msgstr "تقسيم وترتيب ملفات الفيديو إلى جودات مختلفة"
 
 #: apps/shared/django/utils/validators.py:21
 msgid "Invalid format of audiofile. Please, upload a valid audio file!"
-msgstr ""
+msgstr "تنسيق ملف صوتي غير صالح. الرجاء تحميل ملف صوتي صالح!"
 
 #: root/settings/i18n.py:18
 msgid "English"
-msgstr ""
+msgstr "الإنجليزية"
 
 #: root/settings/i18n.py:18
 msgid "Russian"
-msgstr ""
+msgstr "الروسية"
 
 #: root/settings/i18n.py:18
 msgid "Uzbek"
-msgstr ""
+msgstr "الأوزبكية"
 
 #: root/settings/i18n.py:18
 msgid "Arabic"
-msgstr ""
+msgstr "العربية"
 
 #: root/settings/jazzmin_configs.py:29
 msgid "Welcome to the UZB Content"
-msgstr ""
+msgstr "مرحبًا بك في المحتوى الأوزبكي"
 
 #: root/settings/jazzmin_configs.py:47
 msgid "Go back to website"
-msgstr ""
+msgstr "العودة إلى الموقع الإلكتروني"

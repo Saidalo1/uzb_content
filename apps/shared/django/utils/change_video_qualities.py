@@ -11,9 +11,12 @@ from root.settings import BASE_DIR, MEDIA_URL, qualities
 @app.task(bind=True, name=_('Split and sort video files into different qualities'))
 def transcode_video(self, object_pk):
     self.update_state(state='RUNNING')
-    from apps.content.models import Video
-    video = Video.objects.get(pk=object_pk)
+    from apps.content.models import Products
+    video = Products.objects.get(pk=object_pk)
     input_file_path = video.video_original.path
+    if not exists(input_file_path):
+        return f"The video file for object '{video.title}' does not exist!"
+
     video_qualities = {}
     video_name = video.video_original.name
 
@@ -29,6 +32,6 @@ def transcode_video(self, object_pk):
 
             setattr(video, f'video_{quality}', output_file_path)
         video_qualities[quality] = file_path
-    Video.objects.filter(pk=video.pk).update(video_1080=video_qualities['1080p'], video_720=video_qualities['720p'],
-                                             video_480=video_qualities['480p'])
+    Products.objects.filter(pk=video.pk).update(video_1080=video_qualities['1080p'], video_720=video_qualities['720p'],
+                                                video_480=video_qualities['480p'])
     return f"The video file '{video_name}' has been successfully divided and sorted by different quality!"

@@ -21,7 +21,7 @@ qualities = {
 hostname, _, ips = socket.gethostbyname_ex(socket.gethostname())
 INTERNAL_IPS = [ip[: ip.rfind(".")] + ".1" for ip in ips] + ["127.0.0.1", "localhost", "172.23.0.1"]
 
-languages_to_create = {'uz': "O'zbek", 'ru': "Русский язык", 'en': "English"}
+languages_to_create = {'uz': "O'zbek", 'ru': "Русский язык", 'en': "English", 'ar': "العربيّة"}
 languages_to_create_keys = languages_to_create.keys()
 
 # Django Media https

@@ -1,14 +1,8 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-02-19 08:00+0000\n"
+"POT-Creation-Date: 2024-03-01 21:26+0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,188 +11,172 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
+
 #: apps/content/admin.py:19
-msgid "Metadata"
-msgstr ""
+msgid "General"
+msgstr "Asosiy"
 
-#: apps/content/admin.py:23
-msgid "Creators"
-msgstr ""
-
-#: apps/content/admin.py:26
-msgid "Actors"
-msgstr ""
-
-#: apps/content/admin.py:29
-msgid "Availability"
-msgstr ""
-
-#: apps/content/admin.py:51
-msgid "Personal Information"
-msgstr ""
-
-#: apps/content/admin.py:54
-msgid "Details"
-msgstr ""
+#: apps/content/admin.py:31 apps/content/models.py:20 apps/content/models.py:34
+#: apps/content/models.py:74
+msgid "title"
+msgstr "Sarlavha"
 
 #: apps/content/apps.py:8
 msgid "content"
-msgstr ""
+msgstr "Tarkib"
 
-#: apps/content/models.py:15 apps/content/models.py:31
-#: apps/content/models.py:47
-msgid "title"
-msgstr ""
-
-#: apps/content/models.py:17 apps/content/models.py:33
-#: apps/content/models.py:62 apps/content/models.py:84
-msgid "is_active"
-msgstr ""
-
-#: apps/content/models.py:25 apps/content/models.py:85
+#: apps/content/models.py:28 apps/content/models.py:120
 msgid "language"
-msgstr ""
+msgstr "Til"
 
-#: apps/content/models.py:26
+#: apps/content/models.py:29
 msgid "languages"
-msgstr ""
+msgstr "Tillar"
 
-#: apps/content/models.py:32
+#: apps/content/models.py:35
 msgid "description"
-msgstr ""
+msgstr "Ta'rif"
 
-#: apps/content/models.py:41
+#: apps/content/models.py:37
+msgid "slug"
+msgstr "Slug"
+
+#: apps/content/models.py:68
 msgid "slug_page"
-msgstr ""
+msgstr "Slug sahifa"
 
-#: apps/content/models.py:42
+#: apps/content/models.py:69
 msgid "slug_pages"
-msgstr ""
+msgstr "Slug sahifalar"
 
-#: apps/content/models.py:48
+#: apps/content/models.py:75
 msgid "annotation"
-msgstr ""
+msgstr "Izoh"
 
-#: apps/content/models.py:49
-msgid "is_featured"
-msgstr ""
-
-#: apps/content/models.py:50
+#: apps/content/models.py:76
 msgid "youtube_link"
-msgstr ""
-
-#: apps/content/models.py:51
-msgid "year"
-msgstr ""
-
-#: apps/content/models.py:52
-msgid "country"
-msgstr ""
-
-#: apps/content/models.py:53
-msgid "genre"
-msgstr ""
-
-#: apps/content/models.py:54
-msgid "episode"
-msgstr ""
-
-#: apps/content/models.py:55
-msgid "original_title"
-msgstr ""
-
-#: apps/content/models.py:56
-msgid "running_time"
-msgstr ""
-
-#: apps/content/models.py:57
-msgid "original_language"
-msgstr ""
-
-#: apps/content/models.py:58
-msgid "directed_by"
-msgstr ""
-
-#: apps/content/models.py:59
-msgid "written_by"
-msgstr ""
-
-#: apps/content/models.py:60
-msgid "cinematography"
-msgstr ""
-
-#: apps/content/models.py:61
-msgid "cast"
-msgstr ""
-
-#: apps/content/models.py:63
-msgid "created_at"
-msgstr ""
-
-#: apps/content/models.py:64
-msgid "updated_at"
-msgstr ""
-
-#: apps/content/models.py:72
-msgid "product"
-msgstr ""
-
-#: apps/content/models.py:73
-msgid "products"
-msgstr ""
+msgstr "YouTube havola"
 
 #: apps/content/models.py:77
-msgid "video_original"
-msgstr ""
+msgid "year"
+msgstr "Yil"
 
 #: apps/content/models.py:78
-msgid "thumbnail"
-msgstr ""
+msgid "country"
+msgstr "Mamlakat"
 
 #: apps/content/models.py:79
-msgid "video_480"
-msgstr ""
+msgid "genre"
+msgstr "Janr"
 
 #: apps/content/models.py:80
-msgid "video_720"
-msgstr ""
+msgid "episode"
+msgstr "Epizod"
 
 #: apps/content/models.py:81
-msgid "video_1080"
-msgstr ""
+msgid "original_title"
+msgstr "Asl sarlavha"
+
+#: apps/content/models.py:82
+msgid "running_time"
+msgstr "Davomiyligi"
 
 #: apps/content/models.py:83
+msgid "original_language"
+msgstr "Asl til"
+
+#: apps/content/models.py:84
+msgid "directed_by"
+msgstr "Rejissor"
+
+#: apps/content/models.py:85
+msgid "written_by"
+msgstr "Yozilgan"
+
+#: apps/content/models.py:86
+msgid "cinematography"
+msgstr "Kinematografiya"
+
+#: apps/content/models.py:87
+msgid "cast"
+msgstr "Aktyorlar"
+
+#: apps/content/models.py:88
+msgid "production"
+msgstr "Tashkilotchi"
+
+#: apps/content/models.py:91
+msgid "thumbnail"
+msgstr "Thumbnail"
+
+#: apps/content/models.py:94
+msgid "video_original"
+msgstr "Asl video"
+
+#: apps/content/models.py:95
+msgid "video_480"
+msgstr "Video 480p"
+
+#: apps/content/models.py:96
+msgid "video_720"
+msgstr "Video 720p"
+
+#: apps/content/models.py:97
+msgid "video_1080"
+msgstr "Video 1080p"
+
+#: apps/content/models.py:98
+msgid "is_featured"
+msgstr "Ozicha"
+
+#: apps/content/models.py:111
+msgid "product"
+msgstr "Mahsulot"
+
+#: apps/content/models.py:112
+msgid "products"
+msgstr "Mahsulotlar"
+
+#: apps/content/models.py:116 apps/content/models.py:128
+msgid "audio"
+msgstr "Audio"
+
+#: apps/content/models.py:118
 msgid "duration"
-msgstr ""
+msgstr "Davomiyligi"
 
-#: apps/content/models.py:104
-msgid "video"
-msgstr ""
+#: apps/content/models.py:129
+msgid "audios"
+msgstr "Audiotraklar"
 
-#: apps/content/models.py:105
-msgid "videos"
-msgstr ""
+#: apps/shared/django/utils/change_video_qualities.py:11
+msgid "Split and sort video files into different qualities"
+msgstr "Video fayllarni ajratib chiqib, turli sifatli tartibga soling"
 
-#: apps/content/views.py:46
-msgid "Invalid quality parameter"
-msgstr ""
+#: apps/shared/django/utils/validators.py:21
+msgid "Invalid format of audiofile. Please, upload a valid audio file!"
+msgstr "Audio faylning noto'g'ri formati. Iltimos, to'g'ri audio faylini yuklang!"
 
-#: root/settings/i18n.py:19
+#: root/settings/i18n.py:18
 msgid "English"
-msgstr ""
+msgstr "Ingliz tili"
 
-#: root/settings/i18n.py:19
+#: root/settings/i18n.py:18
 msgid "Russian"
-msgstr ""
+msgstr "Rus tili"
 
-#: root/settings/i18n.py:19
+#: root/settings/i18n.py:18
 msgid "Uzbek"
-msgstr ""
+msgstr "O'zbek tili"
+
+#: root/settings/i18n.py:18
+msgid "Arabic"
+msgstr "Arab tili"
 
 #: root/settings/jazzmin_configs.py:29
 msgid "Welcome to the UZB Content"
-msgstr ""
+msgstr "UZB Tarkibiga xush kelibsiz"
 
 #: root/settings/jazzmin_configs.py:47
 msgid "Go back to website"
-msgstr ""
+msgstr "Veb saytga qaytish"

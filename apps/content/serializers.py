@@ -1,4 +1,5 @@
-from django.db.models import Q
+from django.db.models import F, Value, CharField, ExpressionWrapper
+from django.db.models.functions import Concat
 from parler_rest.serializers import TranslatableModelSerializer
 from rest_framework.serializers import ModelSerializer
 
@@ -12,7 +13,10 @@ class ProductsModelListSerializer(ModelSerializer):
     def to_representation(self, instance):
         representation = super().to_representation(instance)
         request = self.context['request']
-        representation['thumbnail'] = request.build_absolute_uri(instance.thumbnail.url)
+        try:
+            representation['thumbnail'] = request.build_absolute_uri(instance.thumbnail.url)
+        except ValueError:
+            representation['thumbnail'] = None
         return representation
 
     class Meta:
@@ -27,34 +31,47 @@ class ProductsModelDetailSerializer(ModelSerializer):
 
         video_urls = []
 
-        for video in instance.video.exclude(
-                Q(video_480__isnull=True) | Q(video_480__exact=''),
-                Q(video_720__isnull=True) | Q(video_720__exact=''),
-                Q(video_1080__isnull=True) | Q(video_1080__exact='')
-        ):
-            video_data = {}
+        video_data = {}
 
-            if video.video_480:
-                video_data["video_480"] = request.build_absolute_uri(video.video_480.url)
-            if video.video_720:
-                video_data["video_720"] = request.build_absolute_uri(video.video_720.url)
-            if video.video_1080:
-                video_data["video_1080"] = request.build_absolute_uri(video.video_1080.url)
-            if any(video_data.values()):
-                video_language = video.language
-                video_data['language'] = {'title': video_language.label, 'code': video_language.language_code}
+        if instance.video_480:
+            video_data["video_480"] = request.build_absolute_uri(instance.video_480.url)
+        if instance.video_720:
+            video_data["video_720"] = request.build_absolute_uri(instance.video_720.url)
+        if instance.video_1080:
+            video_data["video_1080"] = request.build_absolute_uri(instance.video_1080.url)
+        if any(video_data.values()):
+            video_data['language'] = instance.audios.annotate(
+                absolute_audio_url=ExpressionWrapper(
+                    Concat(Value(request.build_absolute_uri('/')), Value(MEDIA_URL), 'audio', output_field=CharField()),
+                    output_field=CharField())).values('absolute_audio_url', title=F('language__label'),
+                                                      code=F('language__language_code'))
             video_urls.append(video_data)
 
-        representation['video_urls'] = video_urls
-        representation['thumbnail'] = request.build_absolute_uri(instance.thumbnail.url)
+            representation['video_urls'] = video_urls if any(video_urls) else None
+        try:
+            representation['thumbnail'] = request.build_absolute_uri(instance.thumbnail.url)
+        except ValueError:
+            representation['thumbnail'] = None
 
         next_obj, previous_obj = instance.next_obj, instance.previous_obj
         base_url = request.build_absolute_uri('/')
         if next_obj:
-            next_obj['thumbnail'] = base_url + MEDIA_URL + next_obj['thumbnail']
+            if next_obj.get('thumbnail', '') != '':
+                try:
+                    next_obj['thumbnail'] = base_url + MEDIA_URL + next_obj['thumbnail']
+                except ValueError:
+                    next_obj['thumbnail'] = None
+            else:
+                next_obj['thumbnail'] = None
             representation['next_obj'] = next_obj
         if previous_obj:
-            previous_obj['thumbnail'] = base_url + MEDIA_URL + previous_obj['thumbnail']
+            if next_obj.get('previous', '') != '':
+                try:
+                    previous_obj['thumbnail'] = base_url + MEDIA_URL + previous_obj['thumbnail']
+                except ValueError:
+                    previous_obj['thumbnail'] = None
+            else:
+                previous_obj['thumbnail'] = None
             representation['previous_obj'] = previous_obj
         return representation
 
@@ -62,7 +79,7 @@ class ProductsModelDetailSerializer(ModelSerializer):
         model = Products
         fields = ('id', 'title', 'annotation', "youtube_link", "year", "country", "genre", "episode",
                   "original_title", "running_time", "original_language", "directed_by", "written_by", "cinematography",
-                  "cast")
+                  "cast", 'production')
 
 
 class ProductsFeaturedModelSerializer(ModelSerializer, TranslatedSerializerMixin):
@@ -71,8 +88,21 @@ class ProductsFeaturedModelSerializer(ModelSerializer, TranslatedSerializerMixin
         request = self.context['request']
         representation = super().to_representation(instance)
 
-        representation['video_url'] = request.build_absolute_uri(instance.video.first().video_720.url)
-        representation['thumbnail'] = request.build_absolute_uri(instance.thumbnail.url)
+        try:
+            representation['video_url'] = request.build_absolute_uri(instance.video_720.url)
+        except ValueError:
+            representation['video_url'] = None
+
+        if representation['video_url']:
+            representation['language'] = instance.audios.annotate(
+                absolute_audio_url=ExpressionWrapper(
+                    Concat(Value(request.build_absolute_uri('/')), Value(MEDIA_URL), 'audio', output_field=CharField()),
+                    output_field=CharField())).values('absolute_audio_url', title=F('language__label'),
+                                                      code=F('language__language_code'))
+        try:
+            representation['thumbnail'] = request.build_absolute_uri(instance.thumbnail.url)
+        except ValueError:
+            representation['thumbnail'] = None
         return representation
 
     class Meta:

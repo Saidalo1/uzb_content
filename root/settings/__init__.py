@@ -10,3 +10,13 @@ from root.settings.i18n import LANGUAGE_CODE, TIME_ZONE, USE_I18N, USE_TZ, PARLE
 from root.settings.installed_apps import INSTALLED_APPS
 from root.settings.jazzmin_configs import JAZZMIN_SETTINGS
 from root.settings.middlewares import MIDDLEWARE
+
+
+if DEBUG:
+    def show_toolbar(request):
+        return True
+
+
+    DEBUG_TOOLBAR_CONFIG = {
+        'SHOW_TOOLBAR_CALLBACK': show_toolbar,
+    }

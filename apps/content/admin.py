@@ -9,7 +9,7 @@ class VideoInline(TabularInline):
     model = Video
     fields = ('language', 'video_original',)
     extra = 1
-    min_num = 1
+    min_num = 0
 
 
 @register(Products)

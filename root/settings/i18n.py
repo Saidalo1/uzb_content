@@ -15,8 +15,7 @@ TIME_ZONE = 'UTC'
 USE_I18N = True
 
 USE_TZ = True
-
-LANGUAGES = [('en', _('English')), ('ru', _('Russian')), ('uz', _('Uzbek'))]
+LANGUAGES = [('en', _('English')), ('ru', _('Russian')), ('uz', _('Uzbek')), ('ar', _('Arabic'))]
 
 # Path to save locale files
 LOCALE_PATHS = [

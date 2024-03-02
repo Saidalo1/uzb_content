@@ -56,7 +56,7 @@ class ProductsModelDetailSerializer(ModelSerializer):
 
         next_obj, previous_obj = instance.next_obj, instance.previous_obj
         base_url = request.build_absolute_uri('/')
-        if next_obj is not None:
+        if next_obj:
             if next_obj.get('thumbnail', '') != '':
                 try:
                     next_obj['thumbnail'] = base_url + MEDIA_URL + next_obj['thumbnail']
@@ -65,8 +65,8 @@ class ProductsModelDetailSerializer(ModelSerializer):
             else:
                 next_obj['thumbnail'] = None
             representation['next_obj'] = next_obj
-        if previous_obj and next_obj:
-            if next_obj.get('previous', '') != '':
+        if previous_obj:
+            if previous_obj.get('previous', '') != '':
                 try:
                     previous_obj['thumbnail'] = base_url + MEDIA_URL + previous_obj['thumbnail']
                 except ValueError:

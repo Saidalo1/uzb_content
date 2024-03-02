@@ -1,9 +1,8 @@
 from django.db import IntegrityError
 from django.db.models import DurationField, FileField, BooleanField, URLField, \
     ForeignKey, SET_NULL, CharField, TextField, SlugField
-from django.db.transaction import on_commit
+from django.db.transaction import on_commit, atomic
 from django.template.defaultfilters import slugify
-from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
 from django_ckeditor_5.fields import CKEditor5Field
 from django_resized import ResizedImageField
@@ -13,7 +12,6 @@ from unidecode import unidecode
 from apps.shared.django.models import TimeBaseModel
 from apps.shared.django.utils.change_video_qualities import transcode_video
 from apps.shared.django.utils.utils import audio_upload_path
-from apps.shared.django.utils.validators import AudioValidator
 
 
 class Languages(TimeBaseModel):
@@ -31,34 +29,25 @@ class Languages(TimeBaseModel):
 
 class SlugPage(TimeBaseModel, TranslatableModel):
     translations = TranslatedFields(
-        title=CharField(_('title'), max_length=255),
-        description=CKEditor5Field(_('description'), max_length=2048)
+        title=CharField(verbose_name=_('title'), max_length=510),
+        description=CKEditor5Field(_('description'), config_name='extends'),
     )
-    slug = SlugField(_('slug'), db_index=True, unique=True)
-
-    def get_absolute_url(self):
-        return reverse('content:article_detail', kwargs={'slug': self.slug})
+    slug = SlugField(verbose_name=_('slug'), max_length=510, db_index=True, unique=True)
 
     def save(self, *args, **kwargs):
-        self.slug = slugify(unidecode(self.safe_translation_getter('title', any_language=True)))
         try:
-            super().save(*args, **kwargs)
-            return
+            if self.slug == '':
+                self.slug = slugify(unidecode(self.translations.core_filters['master'].title))
+            with atomic():
+                super().save(*args, **kwargs)
         except IntegrityError:
-            self.slug = self._generate_unique_slug()
-            super().save(*args, **kwargs)
-
-    def _generate_unique_slug(self):
-        """
-        Generate a unique slug by appending a unique number to the original slug.
-        """
-        original_slug = self.slug
-        counter = 1
-        while True:
-            new_slug = f'{original_slug}-{counter}'
-            if not SlugPage.objects.filter(slug=new_slug).exists():
-                return new_slug
-            counter += 1
+            counter = 0
+            while SlugPage.objects.filter(slug=self.slug).exists():
+                counter += 1
+                self.slug = slugify(
+                    unidecode(self.translations.core_filters['master'].title) + '_' + str(counter))
+            with atomic():
+                super().save(*args, **kwargs)
 
     def __str__(self):
         return f"{self.safe_translation_getter('title', any_language=True)}"

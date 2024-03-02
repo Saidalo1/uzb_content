@@ -57,5 +57,5 @@ class VideoAdmin(ModelAdmin):
 
 @register(SlugPage)
 class SlugPageAdmin(TranslatableAdmin):
-    fields = ('title', 'description')
+    fields = ('title', 'description', 'slug')
     list_display = ('title', 'slug')

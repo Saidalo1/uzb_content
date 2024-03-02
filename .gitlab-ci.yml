@@ -7,8 +7,10 @@ deploy:
   #   - 'command -v ssh-agent >/dev/null || ( apk add --update openssh )' 
   #   - eval $(ssh-agent -s)
   script:
-    - ssh proactive@109.205.182.6 -p 22337 "cd /var/www/uzbcontent/uzbcontent-back && git pull && docker-compose up web -d --build"
-    - ssh proactive@109.205.182.6 -p 22337 "cd /var/www/uzbcontent/uzbcontent-back && docker-compose run --rm web python manage.py migrate"
+    - pwd
+    - whoami
+    # - ssh proactive@109.205.182.6 -p 22337 "cd /var/www/uzbcontent/uzbcontent-back && git pull && docker-compose up web -d --build"
+    # - ssh proactive@109.205.182.6 -p 22337 "cd /var/www/uzbcontent/uzbcontent-back && docker-compose run --rm web python manage.py migrate"
   environment:
     name: production
     url: https://cp.uzbcontent.uz/

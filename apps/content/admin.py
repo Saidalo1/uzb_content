@@ -17,9 +17,10 @@ class VideoInline(TabularInline):
 class ProductsAdmin(TranslatableAdmin):
     fieldsets = (
         (_('General'), {
-            'fields': ('title', 'annotation', 'youtube_link', 'year', 'country', 'genre', 'episode', 'original_title',
-                       'running_time', 'original_language', 'directed_by', 'written_by', 'cinematography', 'cast',
-                       'is_featured', 'production', 'thumbnail', 'video_original')}),
+            'fields': (
+                'original_title', 'country', 'year', 'genre', 'episode', 'running_time', 'original_language',
+                'directed_by', 'cinematography', 'written_by', 'cast', 'annotation', 'title', 'youtube_link',
+                'is_featured', 'production', 'thumbnail', 'video_original')}),
     )
     list_display = ('any_title',)
     inlines = (VideoInline,)

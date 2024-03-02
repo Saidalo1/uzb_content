@@ -45,9 +45,9 @@ class ProductsModelDetailSerializer(ModelSerializer):
                     Concat(Value(request.build_absolute_uri('/')), Value(MEDIA_URL), 'audio', output_field=CharField()),
                     output_field=CharField())).values('absolute_audio_url', title=F('language__label'),
                                                       code=F('language__language_code'))
-            video_urls.append(video_data)
+        video_urls.append(video_data)
 
-            representation['video_urls'] = video_urls if any(video_urls) else None
+        representation['video_urls'] = video_urls if any(video_urls) else None
         try:
             representation['thumbnail'] = request.build_absolute_uri(instance.thumbnail.url)
         except ValueError:

@@ -100,7 +100,7 @@ class Products(TimeBaseModel, TranslatableModel):
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)
 
-        if self.video_original:
+        if self.video_original and self.video_original.name:
             on_commit(lambda: transcode_video.delay(self.pk))
 
     def __str__(self):

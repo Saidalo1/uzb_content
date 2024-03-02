@@ -32,6 +32,6 @@ def transcode_video(self, object_pk):
 
             setattr(video, f'video_{quality}', output_file_path)
         video_qualities[quality] = file_path
-    Products.objects.filter(pk=video.pk).update(video_1080=video_qualities['1080p'], video_720=video_qualities['720p'],
+    Products.objects.filter(pk=video.pk).update(video_original=video.video_original, video_1080=video_qualities['1080p'], video_720=video_qualities['720p'],
                                                 video_480=video_qualities['480p'])
     return f"The video file '{video_name}' has been successfully divided and sorted by different quality!"

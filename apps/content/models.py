@@ -75,6 +75,7 @@ class Products(TimeBaseModel, TranslatableModel):
         cinematography=CharField(_('cinematography'), max_length=255, null=True, blank=True),
         cast=CharField(_('cast'), max_length=255, null=True, blank=True),
         production=CharField(_('production'), max_length=255, null=True, blank=True),
+        producer=CharField(_('producer'), max_length=255, null=True, blank=True),
         # is_active=BooleanField(_('is_active'), default=True),
         # thumbnail=ImageField(_('thumbnail'), upload_to='thumbnails/'),
         thumbnail=ResizedImageField(_('thumbnail'), upload_to='thumbnails/', size=[640, 360], quality=80,

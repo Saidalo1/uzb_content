@@ -20,7 +20,7 @@ class ProductsAdmin(TranslatableAdmin):
             'fields': (
                 'original_title', 'country', 'year', 'genre', 'episode', 'running_time', 'original_language',
                 'directed_by', 'cinematography', 'written_by', 'cast', 'annotation', 'title', 'youtube_link',
-                'is_featured', 'production', 'thumbnail', 'video_original')}),
+                'is_featured', 'production', 'producer', 'thumbnail', 'video_original')}),
     )
     list_display = ('any_title',)
     inlines = (VideoInline,)

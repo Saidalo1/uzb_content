@@ -113,7 +113,8 @@ class Products(TimeBaseModel, TranslatableModel):
 
 
 class Audio(TimeBaseModel):
-    audio = FileField(_('audio'), upload_to=audio_upload_path, validators=[AudioValidator()], null=True, blank=True)
+    # audio = FileField(_('audio'), upload_to=audio_upload_path, validators=[AudioValidator()], null=True, blank=True)
+    audio = FileField(_('audio'), upload_to=audio_upload_path, null=True, blank=True)
     product = ForeignKey('content.Products', SET_NULL, 'audios', null=True, blank=True, max_length=255)
     duration = DurationField(_('duration'), null=True, blank=True)
     # is_active = BooleanField(_('is_active'), default=True)

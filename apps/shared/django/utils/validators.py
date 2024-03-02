@@ -27,9 +27,10 @@ class AudioValidator:
         # file_type = filetype.guess(file_path)
 
         # check if file is audio
+        print(file_path, is_audio)
         if is_audio:
             pass
         else:
             raise ValidationError(
-                f"please upload a valid audio file, your file: {file.name}"
+                _("Invalid format of audiofile. Please, upload a valid audio file!")
             )

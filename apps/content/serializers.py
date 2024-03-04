@@ -66,7 +66,7 @@ class ProductsModelDetailSerializer(ModelSerializer):
                 next_obj['thumbnail'] = None
             representation['next_obj'] = next_obj
         if previous_obj:
-            if previous_obj.get('previous', '') != '':
+            if previous_obj.get('thumbnail', '') != '':
                 try:
                     previous_obj['thumbnail'] = base_url + MEDIA_URL + previous_obj['thumbnail']
                 except ValueError:

@@ -1,3 +1,6 @@
+import os
+from hashlib import sha256
+
 from django.db import IntegrityError
 from django.db.models import DurationField, FileField, BooleanField, URLField, \
     ForeignKey, SET_NULL, CharField, TextField, SlugField
@@ -7,6 +10,7 @@ from django.utils.translation import gettext_lazy as _
 from django_ckeditor_5.fields import CKEditor5Field
 from django_resized import ResizedImageField
 from parler.models import TranslatableModel, TranslatedFields
+from pydub import AudioSegment
 from unidecode import unidecode
 
 from apps.shared.django.models import TimeBaseModel
@@ -109,6 +113,51 @@ class Audio(TimeBaseModel):
     duration = DurationField(_('duration'), null=True, blank=True)
     # is_active = BooleanField(_('is_active'), default=True)
     language = ForeignKey('content.Languages', SET_NULL, 'language', verbose_name=_('language'), null=True, blank=True)
+
+    # def save(self, force_insert=False, force_update=False, using=None, update_fields=None):
+    #     if self.audio:
+    #         upload_path = self.audio.path
+    #         audio_filename = os.path.basename(self.audio.name)
+    #         audio_path = os.path.join(upload_path, audio_filename)
+    #
+    #         if not self.pk:
+    #             # Check to exist file before uploading it
+    #             existing_files = os.listdir(upload_path)
+    #             new_file_hash = sha256()
+    #             with open(upload_path, 'rb') as f:
+    #                 new_file_hash.update(f.read())
+    #             for filename in existing_files:
+    #                 file_path = os.path.join(upload_path, filename)
+    #                 # Compare hash sum of files
+    #                 if os.path.isfile(file_path):
+    #                     with open(file_path, 'rb') as f:
+    #                         existing_hash = sha256(f.read()).hexdigest()
+    #                     if existing_hash == new_file_hash.hexdigest():
+    #                         # if we have this video - we use this video
+    #                         self.audio = audio_path
+    #                         return
+    #         else:
+    #             # Update object, remove old photo if we have new
+    #             try:
+    #                 old_instance = Audio.objects.get(pk=self.pk)
+    #                 if old_instance.audio != self.audio:
+    #                     old_audio_path = os.path.join(upload_path, old_instance.audio.name)
+    #                     if os.path.exists(old_audio_path):
+    #                         os.remove(old_audio_path)
+    #             except Audio.DoesNotExist:
+    #                 pass
+    #
+    #             # Check to format of file and if it's not MP3 - convert it to MP3
+    #         if os.path.splitext(self.audio.name)[1] != '.mp3':
+    #             try:
+    #                 sound = AudioSegment.from_file(audio_path)
+    #                 mp3_path = os.path.splitext(audio_path)[0] + '.mp3'
+    #                 mp3_full_path = os.path.join(upload_path, mp3_path)
+    #                 sound.export(mp3_full_path, format="mp3")
+    #                 self.audio.name = mp3_path
+    #             except Exception as e:
+    #                 print(f"Unsuccessfully!: {e}")
+    #     super().save(force_insert, force_update, using, update_fields)
 
     def __str__(self):
         return f"{self.audio.name} - {self.language.language_code}"

@@ -1,6 +1,3 @@
-import os
-from hashlib import sha256
-
 from django.db import IntegrityError
 from django.db.models import DurationField, FileField, BooleanField, URLField, \
     ForeignKey, SET_NULL, CharField, TextField, SlugField
@@ -10,7 +7,6 @@ from django.utils.translation import gettext_lazy as _
 from django_ckeditor_5.fields import CKEditor5Field
 from django_resized import ResizedImageField
 from parler.models import TranslatableModel, TranslatedFields
-from pydub import AudioSegment
 from unidecode import unidecode
 
 from apps.shared.django.models import TimeBaseModel

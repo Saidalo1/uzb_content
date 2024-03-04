@@ -1,4 +1,5 @@
 from django.contrib.admin import register, TabularInline, ModelAdmin
+from django.forms import BaseInlineFormSet
 from django.utils.translation import gettext as _
 from parler.admin import TranslatableAdmin
 
@@ -6,11 +7,20 @@ from apps.content.models import Products, Audio, Languages, SlugPage
 from root.settings import languages_to_create_keys
 
 
-class VideoInline(TabularInline):
+class AudioInlineFormset(BaseInlineFormSet):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for form in self.forms:
+            form.fields['language'].required = True
+
+
+class AudioInline(TabularInline):
     model = Audio
     fields = ('language', 'audio',)
     extra = 1
     min_num = 0
+    formset = AudioInlineFormset
+
 
 
 @register(Products)
@@ -23,7 +33,7 @@ class ProductsAdmin(TranslatableAdmin):
                 'is_featured', 'production', 'producer', 'thumbnail', 'video_original')}),
     )
     list_display = ('any_title',)
-    inlines = (VideoInline,)
+    inlines = (AudioInline,)
     show_full_result_count = False
 
     def any_title(self, obj):
